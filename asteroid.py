@@ -7,14 +7,15 @@ class Asteroid(CircleShape):
         self.rotation = 0
 
     def draw(self, screen):
-        pygame.draw.circle(screen, (255,255,255), (self.x, self.y), self.radius, 2)
+        pygame.draw.circle(screen, (255,255,255), self.position, self.radius, 2)
 
     def rotate(self, dt):
         self.rotation += ROTATION_SPEED * dt
 
     def move(self, dt):
-        forward = pygame.Vector2(0, 1).rotate(self.rotation)
-        self.position += forward * PLAYER_SPEED * dt
+        forward = pygame.Vector2(0, 1)
+        self.position += forward * self.velocity * dt
+    
 
     def update(self, dt):
         self.move(dt)
